@@ -12,13 +12,11 @@ musicas = [f for f in listdir(caminho_musicas) if isfile(join(caminho_musicas, f
 for i, musica in enumerate(musicas):
     print(f'> {i} - {musica}')
 
-
 FIM_DA_MUSICA = pygame.USEREVENT + 1
 pygame.mixer.music.set_endevent(FIM_DA_MUSICA)
 
 pygame.mixer.init()
 pygame.display.init()
-
 
 class AudioApp(ctk.CTk):
     def __init__(self):
@@ -32,7 +30,6 @@ class AudioApp(ctk.CTk):
         self.title("Player de Áudio")
         self.geometry("400x200")
 
-        # Configuração da interface
         self.label = ctk.CTkLabel(self, text="Clique em Play para começar", font=("Arial", 16, "bold"))
         self.label.pack(pady=20)
         
@@ -76,9 +73,6 @@ class AudioApp(ctk.CTk):
             pygame.mixer.music.unpause()
             return
         
-        # if self.musicaAtualIndex >= len(musicas):
-        #     self.label.configure(text="Fim das músicas.")
-        #     return
         try:
             musicaAtual = os.path.join(caminho_musicas, musicas[self.musicaAtualIndex])
             audio = MP3(musicaAtual)
@@ -141,7 +135,6 @@ class AudioApp(ctk.CTk):
         self.pausado = True
         self.dar_play()
 
-# Executa o aplicativo
 if __name__ == "__main__":
     app = AudioApp()
     app.mainloop()
